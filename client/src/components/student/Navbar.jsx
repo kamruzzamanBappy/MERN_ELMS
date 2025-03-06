@@ -14,13 +14,24 @@ const Navbar = () => {
         className="w-28 lg:w-32 cursor-pointer"
       />
       <div className="hidden md:flex items-center gap-5 text-gray-500">
-        <div>
-          <button>Become Educator</button> |{" "}
+        <div className="flex items-center gap-5">
+          <button>Become Educator</button>|{" "}
           <Link to="/my-enrollments">My Enrollments </Link>
         </div>
 
         <button className="bg-blue-600 text-white px-5 py-2 rounded-full">
           Create Account
+        </button>
+      </div>
+
+      {/* phone screen*/}
+      <div className="md:hidden flex items-center gap-2 sm:gap-5 text-gray-500">
+        <div>
+          <button>Become Educator</button>
+          <Link to="/my-enrollment">My Enrollment</Link>
+        </div>
+        <button>
+          <img src={assets.user_icon} alt="" />
         </button>
       </div>
     </div>
