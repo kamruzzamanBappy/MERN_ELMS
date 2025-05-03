@@ -1,6 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 @import "tailwindcss";
 
+@theme {
+  --course-details-heading-small: [ "36px", "46px"];
+  --text-home-heading-large: [ "36px", "44px"];
+  --font-display--font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  --font-display--font-variation-settings: "opsz" 32;
+}
+
 * {
   font-family: Outfit;
 }
