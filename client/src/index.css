@@ -1,11 +1,41 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 @import "tailwindcss";
 
+@import "tailwindcss";
+
 @theme {
-  --course-details-heading-small: [ "36px", "46px"];
-  --text-home-heading-large: [ "36px", "44px"];
-  --font-display--font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  --font-display--font-variation-settings: "opsz" 32;
+  /* Font sizes  */
+  --font-size-course-details-heading-small: 26px / 36px;
+  --font-size-course-details-heading-large: 36px / 44px;
+  --font-size-home-heading-small: 28px / 34px;
+  --font-size-home-heading-large: 48px / 56px;
+  --font-size-default: 15px / 21px;
+
+  /* gridTemplateColumns */
+  --grid-template-columns-auto: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Applying the font sizes as CSS classes.  */
+@layer utilities {
+  .text-course-details-heading-small {
+    font-size: var(--font-size-course-details-heading-small);
+  }
+  .text-course-details-heading-large {
+    font-size: var(--font-size-course-details-heading-large);
+  }
+  .text-home-heading-small {
+    font-size: var(--font-size-home-heading-small);
+  }
+  .text-home-heading-large {
+    font-size: var(--font-size-home-heading-large);
+  }
+  .text-default {
+    font-size: var(--font-size-default);
+  }
+
+  .grid-cols-auto {
+    grid-template-columns: var(--grid-template-columns-auto);
+  }
 }
 
 * {

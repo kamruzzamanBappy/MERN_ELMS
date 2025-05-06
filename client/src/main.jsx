@@ -1,3 +1,5 @@
+
+
 import { ClerkProvider } from "@clerk/clerk-react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
@@ -6,17 +8,9 @@ import { AppContextProvider } from "./context/AppContext.jsx";
 import "./index.css";
 
 // Import your Publishable Key
-<<<<<<< HEAD
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
-
 if (!PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key");
-=======
-const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
-
-if (!PUBLISHABLE_KEY) {
-  throw new Error("Missing Publishable Key")
->>>>>>> cb622ce (d3)
 }
 
 createRoot(document.getElementById("root")).render(

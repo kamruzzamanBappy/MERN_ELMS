@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-const Home = () => {
-  return (
-    <div>
-      <h1>Home</h1>
-=======
+import Companies from "../../components/student/Companies";
+import CoursesSection from "../../components/student/CoursesSection";
 import Hero from "../../components/student/Hero";
 
 const Home = () => {
@@ -11,8 +7,9 @@ const Home = () => {
     <div>
       <div className="flex flex-col items-center space-y-7 text-center">
         <Hero />
+        <Companies />
+        <CoursesSection />
       </div>
->>>>>>> cb622ce (d3)
     </div>
   );
 };

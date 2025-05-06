@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-const Hero = () => {
-  return <h1>Hero</h1>;
-=======
+ 
+ 
 import { assets } from "../../assets/assets";
-import Companies from "./Companies";
 import SearchBar from "./SearchBar";
 const Hero = () => {
   return (
@@ -18,10 +15,10 @@ const Hero = () => {
       </p>
 
       <SearchBar />
-      <Companies />
+       
     </div>
   );
->>>>>>> cb622ce (d3)
+ 
 };
 
 export default Hero;
