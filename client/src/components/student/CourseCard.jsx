@@ -6,7 +6,7 @@ const CourseCard = ({course}) => {
 
  const {currency,calculateRating }  = useContext(AppContext)
   return (
-    <Link to={'/course/' + course._id} onClick={()=>scrollTo(0,0)} className='border overflow-hidden border-gray-500/30 pb-6 overflow-hidden rounded-lg'>
+    <Link to={'/course/' + course._id} onClick={()=>scrollTo(0,0)} className='border overflow-hidden border-gray-500/30 pb-6  rounded-lg'>
       <img className='w-full' src={course.courseThumbnail} alt="" />
       <div className='p-3 text-left'>
       <h3 className='text-base font-semibold'>{course.courseTitle}</h3>
@@ -18,7 +18,7 @@ const CourseCard = ({course}) => {
         )}
         </div>
 
-        <p className='text-gray-500'>22</p>
+        <p className='text-gray-500'>{course.courseRatings.length}</p>
       </div>
       <p className='text-base font-semibold text-gray-800'>{currency}{(course.coursePrice - course.discount * course.coursePrice/100).toFixed(2)}</p>
     </div>

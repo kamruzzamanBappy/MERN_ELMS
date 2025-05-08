@@ -11,6 +11,8 @@ export const AppContextProvider = (props) => {
   const navigate = useNavigate()
  const [allCourses,setAllCourses] = useState([])
 
+ const [isEducator,setIsEducator]=useState(true)
+
 
  //Function to cal the average rating of course
  const calculateRating = (course)=>{
@@ -34,7 +36,9 @@ export const AppContextProvider = (props) => {
  },[])
  
  const value = {
-    currency,allCourses,navigate,calculateRating
+    currency,allCourses,navigate,calculateRating,
+  isEducator,setIsEducator
+  
   };
 
   return (
