@@ -49,6 +49,55 @@ const [lectureDetails,setLectureDetails] = useState({
   }
 };
 
+const handleLecture = (action, chapterId,lectureIndex) => {
+  if (action === 'add') {
+    setCurrentChapterId(chapterId);
+    setShowPopup(true);
+  }
+
+  else if (action === 'remove') {
+    setChapters(
+      chapters.map((chapter) => {
+        if(chapter.chapterId === chapterId) {
+          chapter.chapterContent.splice(lectureIndex,1);
+        }
+        return chapter;
+      })
+    )
+  }
+}
+
+const addLecture = () => {
+setChapters(
+  chapters.map((chapter) => {
+    if (chapter.chapterID === currentChapterId){
+      const newLecture = {
+        ...lectureDetails,
+        lectureOrder: chapter.chapterContent.length > 0 ? chapter.chapterContent.slice(-1)[0].lectureOrder + 1 : 1,
+        lectureId: uniqid()
+      };
+      chapter.chapterContent.push(newLecture);
+    }
+    return chapter;
+  })
+);
+
+setShowPopup(false);
+setLectureDetails({
+  lectureTitle:'',
+  lectureDuration: '',
+  lectureUrl: '',
+  isPreviewFree: false,
+});
+};
+
+const handleSubmit = async (e) => {
+  e.preventDefault()
+}
+
+
+
+
 
 
 useEffect(()=> {
@@ -64,7 +113,9 @@ useEffect(()=> {
 
   return (
    <div className='h-screen overflow-scroll flex flex-col items-start justify-between md:p-8 md:pb-0 p-4 pt-8 pb-0'>
-      <form>
+      <form onSubmit={handleSubmit} className='flex flex-col gap-4 max-w-md w-full text-gray-500'>
+      
+     <div className="flex flex-col gap-1">
         <p>Course Title</p>
         <input
           onChange={e => setCourseTitle(e.target.value)}
@@ -73,7 +124,7 @@ useEffect(()=> {
           placeholder='Type here'
           className='outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500'
           required
-        />
+        /> </div>
 <div className="flex flex-col gap-1">
   <p>Course Description</p>
   <div ref={editorRef}></div>
@@ -107,7 +158,8 @@ useEffect(()=> {
     <div key={chapterIndex} className='bg-white border rounded-lg mb-4'>
       <div className="flex justify-betwwen items-center p-4 border-b">
 <div className='flex items-center'>
-<img src={assets.dropdown_icon} width={14} alt="" className={`mr-2 cursor-pointer transition-all ${chapter.collapsed && "-rotate-90"}`} />
+<img onClick={()=>handleChapter('toggle',chapter.chapterID)}
+ src={assets.dropdown_icon} width={14} alt="" className={`mr-2 cursor-pointer transition-all ${chapter.collapsed && "-rotate-90"}`} />
 
 
 <span className="font-semibold">
@@ -117,18 +169,18 @@ useEffect(()=> {
   {chapter.chapterContent.length} Lectures
 </span>
 
-<img src={assets.cross_icon} alt="" className='cursor-pointer' />
+<img onClick={() =>handleChapter('remove',chapter.chapterID)} src={assets.cross_icon} alt="" className='cursor-pointer' />
 </div>
 {!chapter.collapsed && (
   <div className='p-4'> 
 {chapter.chapterContent.map((lecture,lectureIndex)=>(
   <div key={lectureIndex} className='flex justify-between items-center mb-2'>
     <span>{lectureIndex + 1} {lecture.lectureTitle} - {lecture.lectureDuration} mins - <a href={lecture.lectureUrl} target='_blank' className='text-blue-500'>Link</a> - {lecture.isPreviewFree ? 'Free Preview' : 'Paid'}</span>
-    <img src={assets.cross_icon} alt="" className='cursor-pointer' />
+    <img src={assets.cross_icon} alt="" onClick={()=>handleLecture('remove',chapter.chapterID,lectureIndex)} className='cursor-pointer' />
      </div>
 ))}
 
-<div className='inline-flex bg-gray-100 p-2 rounded cursor-pointer mt-2'>
+<div className='inline-flex bg-gray-100 p-2 rounded cursor-pointer mt-2' onClick={()=> handleLecture('add',chapter.chapterId) }>
   + Add Lecture
 </div>
   </div>
@@ -191,7 +243,7 @@ useEffect(()=> {
 </div>
 
 
-<button type='button' className='w-full bg-blue-400 text-white px-4 py-2 rounded'>
+<button type='button' className='w-full bg-blue-400 text-white px-4 py-2 rounded' onClick={addLecture}>
 Add
 </button>
 
